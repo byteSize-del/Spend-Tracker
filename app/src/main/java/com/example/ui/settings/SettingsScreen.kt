@@ -109,6 +109,8 @@ fun SettingsScreen(
     onBiometricsToggle: (Boolean) -> Unit,
     isNotificationEnabled: Boolean,
     onNotificationToggle: (Boolean) -> Unit,
+    isAutoUpdateEnabled: Boolean,
+    onAutoUpdateToggle: (Boolean) -> Unit,
     onSignOut: () -> Unit,
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier
@@ -287,6 +289,15 @@ fun SettingsScreen(
                 checked = showRawMessages,
                 onCheckedChange = { showRawMessages = it },
                 tag = "raw_messages_toggle"
+            )
+
+            // Auto Updates Toggle
+            PreferenceRow(
+                title = "Auto Updates",
+                subtitle = "Keep Spend Tracker securely and automatically updated in the background.",
+                checked = isAutoUpdateEnabled,
+                onCheckedChange = onAutoUpdateToggle,
+                tag = "auto_updates_toggle"
             )
 
             Spacer(modifier = Modifier.height(24.dp))

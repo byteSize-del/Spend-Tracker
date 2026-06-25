@@ -75,4 +75,8 @@ class SessionManager(context: Context) {
     var isNotificationListenerEnabled: Boolean
         get() = prefs.getBoolean(KEY_NOTIFICATION_LISTENER_ENABLED, false)
         set(value) = prefs.edit().putBoolean(KEY_NOTIFICATION_LISTENER_ENABLED, value).apply()
+
+    var isAutoUpdateEnabled: Boolean
+        get() = prefs.getBoolean("auto_update_enabled", true)
+        set(value) = prefs.edit().putBoolean("auto_update_enabled", value).apply()
 }

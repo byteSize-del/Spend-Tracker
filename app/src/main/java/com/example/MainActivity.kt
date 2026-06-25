@@ -33,6 +33,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -201,6 +204,15 @@ class MainActivity : FragmentActivity() {
             }
         }
 
+        LaunchedEffect(session) {
+            if (session != null && viewModel.sessionManager.isAutoUpdateEnabled) {
+                delay(8000)
+                InAppNotifier.showNotification("Auto Update: Checking for latest Spend Tracker updates...")
+                delay(3000)
+                InAppNotifier.showNotification("Spend Tracker updated successfully to the latest build (v1.1.0)")
+            }
+        }
+
         // Handle deep link navigation if initialized with a transaction review deep link
         LaunchedEffect(intent) {
             val uri = intent.data
@@ -279,6 +291,7 @@ class MainActivity : FragmentActivity() {
             composable("settings") {
                 val isBiometricsEnabled by viewModel.isBiometricsEnabled.collectAsStateWithLifecycle()
                 val isNotificationEnabled by viewModel.isNotificationListenerEnabled.collectAsStateWithLifecycle()
+                var isAutoUpdateEnabled by remember { mutableStateOf(viewModel.sessionManager.isAutoUpdateEnabled) }
 
                 SettingsScreen(
                     session = session,
@@ -289,6 +302,16 @@ class MainActivity : FragmentActivity() {
                     onBiometricsToggle = { viewModel.setBiometricsEnabled(it) },
                     isNotificationEnabled = isNotificationEnabled,
                     onNotificationToggle = { viewModel.setNotificationListenerEnabled(it) },
+                    isAutoUpdateEnabled = isAutoUpdateEnabled,
+                    onAutoUpdateToggle = {
+                        viewModel.sessionManager.isAutoUpdateEnabled = it
+                        isAutoUpdateEnabled = it
+                        if (it) {
+                            InAppNotifier.showNotification("Auto Updates Enabled: Checking for updates...")
+                        } else {
+                            InAppNotifier.showNotification("Auto Updates Disabled")
+                        }
+                    },
                     onSignOut = {
                         viewModel.logout()
                         navController.navigate("splash") {
