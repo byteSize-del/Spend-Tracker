@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Glowing Background Aura/Shadow underneath the logo -->
+    <path
+        android:pathData="M54,54m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0"
+        android:strokeWidth="12"
+        android:strokeColor="#15FFFFFF" />
+
+    <!-- 1. The Premium Diamond Ledger (Base Logo Structure) -->
+    <path
+        android:pathData="M54,26 L82,54 L54,82 L26,54 Z"
+        android:strokeWidth="3.5"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="26"
+                android:startY="26"
+                android:endX="82"
+                android:endY="82"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFFFFF" />
+                <item android:offset="0.5" android:color="#A0A0A0" />
+                <item android:offset="1.0" android:color="#404040" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Translucent filled inner diamond for visual depth -->
+    <path
+        android:pathData="M54,34 L74,54 L54,74 L34,54 Z"
+        android:fillColor="#1AFFFFFF" />
+
+    <!-- 2. The Dynamic Ascending Cashflow/Trend Line -->
+    <path
+        android:pathData="M31,66 L46,54 L58,60 L77,36"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="31"
+                android:startY="66"
+                android:endX="77"
+                android:endY="36"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#E0E0E0" />
+                <item android:offset="1.0" android:color="#FFFFFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 3. Terminal Node - The Goal/Success Indicator Circle -->
+    <path
+        android:pathData="M77,36m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"
+        android:fillColor="#FFFFFF" />
+
+    <path
+        android:pathData="M77,36m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#E0E0E0" />
+</vector>

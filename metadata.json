@@ -1,0 +1,6 @@
+{
+  "name": "Spend Tracker",
+  "description": "Smart passive spend tracker that parses SMS and notifications into structured records with Room database and biometrics security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
